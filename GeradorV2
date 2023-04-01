@@ -1,0 +1,173 @@
+# -*- coding: utf-8 -*-
+#encoding: utf-8
+# -*- coding: cp1252 -*-
+from random import *
+
+class Personagem():
+    def Char(self, nome, nivel, quantia):
+        Personagem = open('Perssonagem' + str(quantia) + '.txt', 'w')
+        Personagem.write('\nNome:' + str(nome))
+        Personagem.write('\nNivel:' + str(nivel))
+        status = [1] * 6
+        pontos = 5 + nivel
+        for x in range(pontos, 0, -1):
+            status[randint(0, 5)] += 1
+        Personagem.write('\nFor :' + str(status[0]))
+        Personagem.write('\nDes :' + str(status[1]))
+        Personagem.write('\nCon :' + str(status[2]))
+        Personagem.write('\nInt :' + str(status[3]))
+        Personagem.write('\nSab :' + str(status[4]))
+        Personagem.write('\nCar :' + str(status[5]))
+        Personagem.close()
+        print ('-----------Pericias-----------')
+    def Desvantagens(self, numero):
+        Lista = [
+            ['Saúde fraca','Míope','Fraco pelo sexo oposto', 'Azarado nos jogos', 'Nervoso perto do sexo oposto', 'Piadista', 'Indeciso', 'Tímido', 'Insônia', 'Viciado em drogas(1)', 'Arrogante', 'Curioso', 'Delirante', 'Podia ser pior', 'Péssimo senso de direção'],
+            ['Perdeu um membro', 'Lento', 'Asma', 'Infantil', 'Descoordenado', 'Rastreado', 'Inocente', 'Apreço a arma', 'Péssima visão no escuro', 'Dívida ancestral', 'Distraído', 'Enxaqueca(2)', 'Impulsividade', 'Agressivo', 'Senhas fracas', 'Assombrado', 'Azarado', 'Aziago', 'Furia', 'Sadomasoquismo', 'Gregário', 'Vocabulário limitado'],
+            ['Mentiroso', 'Língua solta', 'Renegado', 'Esquizofrenia', 'Deficiência(auditiva)', 'Deficiência(visual)', 'Alcoólatra', 'Depressão', 'Fobia(Escuro)', 'Fobia(maquinas)', 'Fobia(cyborg)', 'Fobia(hacker)', 'Fobia(granadas)', 'Homicida', 'Enjoo em veiculos(3)'],
+            ['Epilético', 'Aversão a modificação humana', 'Esquizotípica', 'Doente Termina', 'Paraplégico'],
+            ['Vesgo', 'Demente', 'Horrendo', 'Viciado em drogas', 'Frágil']
+        ]
+        Pegar = []
+        Desvantagens = []
+        Pontos = 4
+        x = 0
+        b = 0
+        while (x != 6): #(adicionar or len(Desvantagens) < ? para maior quantia de Desvantagens)
+            #Limitador
+            #if len(Desvantagens) == 2:
+                #break
+            x = randint(1,6)
+            if x == 1:
+                Pegar = Lista [0][(randint(0,len(Lista[0])-1))]
+                if Pegar not in Desvantagens:
+                    Pontos += 1
+            if x == 2:
+                Pegar = Lista [1][(randint(0,len(Lista[1])-1))]
+                if Pegar not in Desvantagens:
+                    Pontos += 2
+            if x == 3:
+                Pegar = Lista [2][(randint(0,len(Lista[2])-1))]
+                if Pegar not in Desvantagens:
+                    Pontos += 3
+            if x == 4:
+                Pegar = Lista [3][(randint(0,len(Lista[3])-1))]
+                if Pegar not in Desvantagens:
+                    Pontos += 4
+            if x == 5:
+                Pegar = Lista [4][(randint(0,len(Lista[4])-1))]
+                if Pegar not in Desvantagens:
+                    Pontos += 5
+            if Pegar not in Desvantagens:
+                Desvantagens += [Pegar]
+        print (Desvantagens)
+        print (Pontos)
+        Perssonagem = open('Perssonagem' + str(numero) + '.txt', 'r')
+        conteudo = Perssonagem.readlines()
+        conteudo.append('\nPontos:' + str(Pontos))
+        conteudo.append('\n----------Desvantagens----------')
+        for x in range(len(Desvantagens), 0, -1):
+            conteudo.append('\n' + str(Desvantagens[b]))
+            b+=1
+        Perssonagem = open('Perssonagem' + str(numero) + '.txt', 'w')
+        Perssonagem.writelines(conteudo)  # escreva o conteúdo criado anteriormente nele.
+
+        Perssonagem.close()
+    def Vantagens(self, numero):
+        Lista = [
+            ['Preparar', 'Catálogo humano', 'Corajoso', 'Duro de Matar', 'Tolerância a Álcool', 'Herança de família'],
+            ['', ]
+
+        ]
+        Pegar = []
+        Vantagens = []
+        Pontos = 4
+        x = 0
+        b = 0
+        while (Pontos != 0):  # (adicionar or len(Desvantagens) < ? para maior quantia de Desvantagens)
+        # Limitador
+        #if len(Desvantagens) == 2:
+        #break
+            x = randint(1, 6)
+            if x == 1:
+                Pegar = Lista[0][(randint(0, len(Lista[0]) - 1))]
+                if Pegar not in Vantagens:
+                    Pontos -= 1
+            if x == 2:
+                Pegar = Lista[1][(randint(0, len(Lista[1]) - 1))]
+                if Pegar not in Vantagens:
+                    Pontos -= 2
+            if x == 3:
+                Pegar = Lista[2][(randint(0, len(Lista[2]) - 1))]
+                if Pegar not in Vantagens:
+                    Pontos -= 3
+            if x == 4:
+                Pegar = Lista[3][(randint(0, len(Lista[3]) - 1))]
+                if Pegar not in Vantagens:
+                    Pontos -= 4
+            if x == 5:
+                Pegar = Lista[4][(randint(0, len(Lista[4]) - 1))]
+                if Pegar not in Vantagens:
+                    Pontos -= 5
+            if Pegar not in Vantagens:
+                Vantagens += [Pegar]
+            if Pontos < 0:
+                Pontos = 0
+        print (Vantagens)
+        print (Pontos)
+        Perssonagem = open('Perssonagem' + str(numero) + '.txt', 'r')
+        conteudo = Perssonagem.readlines()
+        conteudo.append('\nPontos:' + str(Pontos))
+        conteudo.append('\n----------Vantagens----------')
+        for x in range(len(Desvantagens), 0, -1):
+            conteudo.append('\n' + str(Desvantagens[b]))
+            b += 1
+        Perssonagem = open('Perssonagem' + str(numero) + '.txt', 'w')
+        Perssonagem.writelines(conteudo)
+    def Pericias(self, numero):
+        Perssonagem = open('Perssonagem' + str(numero) + '.txt', 'r')
+        conteudo = Perssonagem.readlines()
+        conteudo.append('\n-----------Pericias-----------')  # insira seu conteúdo
+        conteudo.append('\nposso inserir qualquer coisa?')
+        conteudo.append('\nposso inserir qualquer coisa?')
+        conteudo.append('\nposso inserir qualquer coisa?')
+
+        Perssonagem = open('Perssonagem' + str(numero) + '.txt', 'w')
+        Perssonagem.writelines(conteudo)  # escreva o conteúdo criado anteriormente nele.
+
+        Perssonagem.close()
+
+
+class GerNomes():
+    def getnome(self, quantia):
+        lista = [
+            ['l','p','n','t','a','i','z','s','b','t','x','v'],
+            ['a', 'e', 'i', 'o', 'u',],
+            ['n', 'o', 'x', 'v', 'r', 'i', 'b', 'e', 'u', 'w', 'y'],
+            ['a','c','e','g','h','i','k','l','m','n','o','p','r','s','t','x','y','z']
+        ]
+        b = 0
+        contador = 0
+        for i in range(quantia):
+            letras = [0]*(randrange(3, 6))
+            for x in range(len(letras), 0, -1):
+                letras[b] = lista[contador][(randint(0,len(lista[contador])-1))]
+                if letras[b] == letras[b-1]:
+                    letras[b] = lista[contador][(randint(0,len(lista[contador])-1))]
+                b += 1
+                contador +=1
+                if contador > 3:
+                    contador = 0
+            b = 0
+            contador = 0
+        return letras
+
+x=1
+quantia = 5
+for quantia in range(quantia, 0, -1):
+    nome = GerNomes().getnome(1)
+    Personagem().Char(nome, randint(0, x), quantia)
+    #Personagem().Vantagens(quantia)
+    #Personagem().Pericias(quantia)
+    Personagem().Desvantagens(quantia)
+
